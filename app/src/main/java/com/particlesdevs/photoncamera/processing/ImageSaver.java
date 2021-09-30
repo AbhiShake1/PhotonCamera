@@ -9,8 +9,6 @@ import android.media.Image;
 import android.media.ImageReader;
 import android.util.Log;
 
-import androidx.exifinterface.media.ExifInterface;
-
 import com.particlesdevs.photoncamera.api.CameraMode;
 import com.particlesdevs.photoncamera.api.ParseExif;
 import com.particlesdevs.photoncamera.app.PhotonCamera;
@@ -32,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ImageSaver {
     /**
@@ -72,7 +71,7 @@ public class ImageSaver {
 
     public void initProcess(ImageReader mReader) {
         Log.v(TAG, "initProcess() : called from \"" + Thread.currentThread().getName() + "\" Thread");
-        Image mImage = null;
+        Image mImage;
         try {
             mImage = mReader.acquireNextImage();
         } catch (Exception ignored) {
@@ -151,9 +150,9 @@ public class ImageSaver {
     }
 
     private void addRAW(Image image) {
-        if (PhotonCamera.getSettings().selectedMode == CameraMode.UNLIMITED) {
+        if (PhotonCamera.getSettings().selectedMode == CameraMode.UNLIMITED)
             mUnlimitedProcessor.unlimitedCycle(image);
-        } else {
+        else {
             Log.d(TAG, "start buffer size:" + IMAGE_BUFFER.size());
             image.getFormat();
             IMAGE_BUFFER.add(image);
@@ -253,8 +252,9 @@ public class ImageSaver {
                 outputStream.flush();
                 outputStream.close();
                 img.recycle();
-                ExifInterface inter = ParseExif.setAllAttributes(fileToSave.toFile(), exifData);
-                inter.saveAttributes();
+                Objects.requireNonNull(
+                        ParseExif.setAllAttributes(fileToSave.toFile(), exifData)
+                ).saveAttributes();
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -310,9 +310,8 @@ public class ImageSaver {
 
         public static Path getNewImageFilePath(String extension) {
             File dir = FileManager.sDCIM_CAMERA;
-            if (extension.equalsIgnoreCase("dng")) {
+            if (extension.equalsIgnoreCase("dng"))
                 dir = FileManager.sPHOTON_RAW_DIR;
-            }
             return Paths.get(dir.getAbsolutePath(), generateNewFileName() + '.' + extension);
         }
     }

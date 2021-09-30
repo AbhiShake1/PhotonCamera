@@ -11,16 +11,16 @@ public class Vibration {
     private final VibrationEffect click;
     private VibrationEffect getTick(){
         VibrationEffect output;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
             output = VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK);
-        } else output = VibrationEffect.createOneShot(9,255);
+        else output = VibrationEffect.createOneShot(9,255);
         return output;
     }
     private VibrationEffect getClick(){
         VibrationEffect output;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
             output = VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK);
-        } else output = VibrationEffect.createOneShot(13,255);
+        else output = VibrationEffect.createOneShot(13,255);
         return output;
     }
     public Vibration(Context context){

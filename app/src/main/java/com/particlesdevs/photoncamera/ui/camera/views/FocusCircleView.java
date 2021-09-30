@@ -60,16 +60,10 @@ public class FocusCircleView extends View {
     public void setAfState(int afState) {
         focused_locked = false;
         unfocused_locked = false;
-        switch (afState) {
-            case 4:
-                focused_locked = true;
-                break;
-            case 5:
-                unfocused_locked = true;
-                break;
-            default:
-                break;
-        }
+        if (afState == 4)
+            focused_locked = true;
+        else if (afState == 5)
+            unfocused_locked = true;
         invalidate();
     }
 }

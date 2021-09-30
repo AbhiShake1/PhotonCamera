@@ -117,15 +117,14 @@ public class Swipe {
     }
 
     public void SwipeUp() {
-        if (cameraFragmentViewModel.isSettingsBarVisible()) {
+        if (cameraFragmentViewModel.isSettingsBarVisible())
             cameraFragmentViewModel.setSettingsBarVisible(false);
-        } else {
+        else {
             ocManual.animate().rotation(180).setDuration(250).start();
             manualModeConsole.setPanelVisibility(true);
 //        cameraFragment.getCaptureController().rebuildPreview();
             cameraFragment.getTouchFocus().resetFocusCircle();
         }
-
     }
 
     public void SwipeDown() {
@@ -135,9 +134,8 @@ public class Swipe {
             captureController.reset3Aparams();
             manualModeConsole.setPanelVisibility(false);
             manualModeConsole.retractAllKnobs();
-        } else {
+        } else
             cameraFragmentViewModel.setSettingsBarVisible(true);
-        }
     }
 
     public void SwipeRight() {

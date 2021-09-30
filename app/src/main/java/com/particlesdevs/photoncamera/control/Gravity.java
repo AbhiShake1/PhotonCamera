@@ -38,23 +38,22 @@ public class Gravity {
 
     public int getRotation() {
 
-        if (mGravity == null) {
+        if (mGravity == null)
             return 90;
-        }
+
         if (mGravity[2] > 9f) //pointing at the ground
             return 90;
 
-        if (Math.abs(mGravity[0]) > Math.abs(mGravity[1])) {
+        if (Math.abs(mGravity[0]) > Math.abs(mGravity[1]))
             if (mGravity[0] > 0f)
                 return 0;
             else
                 return 180;
-        } else {
+        else
             if (mGravity[1] > 1.5f)
                 return 90;
             else
                 return 270;
-        }
     }
 
     public int getCameraRotation(int sensorOrientation) {

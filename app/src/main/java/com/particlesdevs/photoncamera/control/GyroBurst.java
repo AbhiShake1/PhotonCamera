@@ -2,15 +2,14 @@ package com.particlesdevs.photoncamera.control;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-
 public class GyroBurst {
+    private final int maxSamples;
     public float shakiness;
     public float[][] movementss;
     public long[] timestampss;
     public float[] integrated;
-    private final int maxSamples;
-    public GyroBurst(int maxSamples){
+
+    public GyroBurst(int maxSamples) {
         this.maxSamples = maxSamples;
         movementss = new float[3][maxSamples];
         timestampss = new long[maxSamples];

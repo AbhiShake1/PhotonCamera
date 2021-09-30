@@ -3,7 +3,6 @@ package com.particlesdevs.photoncamera.api;
 import androidx.annotation.StringRes;
 
 import com.particlesdevs.photoncamera.R;
-import com.particlesdevs.photoncamera.app.PhotonCamera;
 
 import java.util.stream.Stream;
 

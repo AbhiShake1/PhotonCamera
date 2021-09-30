@@ -22,7 +22,7 @@ public class CountdownTimer extends CountDownTimer {
         super(millisInFuture, countDownInterval);
         this.callback = callback;
         this.tv = tv;
-        this.interval = countDownInterval;
+        interval = countDownInterval;
     }
 
     @Override

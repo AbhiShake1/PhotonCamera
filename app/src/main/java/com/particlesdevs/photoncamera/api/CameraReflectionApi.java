@@ -1,5 +1,6 @@
 package com.particlesdevs.photoncamera.api;
 
+import android.annotation.SuppressLint;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -107,6 +108,7 @@ public class CameraReflectionApi {
     public static void PatchBL(BlackLevelPattern pattern, int[] bl) {
         try {
             //noinspection JavaReflectionMemberAccess
+            @SuppressLint("SoonBlockedPrivateApi")
             Field mCfaOffsetsField = pattern.getClass().getDeclaredField("mCfaOffsets");
             mCfaOffsetsField.setAccessible(true);
             Object mCfaOffsets = mCfaOffsetsField.get(pattern);

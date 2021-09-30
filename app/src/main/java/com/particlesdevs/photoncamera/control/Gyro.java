@@ -4,7 +4,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
 
 import com.particlesdevs.photoncamera.api.CameraMode;
 import com.particlesdevs.photoncamera.app.PhotonCamera;
@@ -23,7 +22,7 @@ public class Gyro {
     private GyroBurst gyroBurst;
     private int filter = -1;
     public int tripodShakiness = 1000;
-    private static int delayPreview = 500;
+    private static final int delayPreview = 500;
     public static int delayUs = delayPreview;
     int tripodDetectCount = 600;
     int tripodCounter = 0;
@@ -104,9 +103,8 @@ public class Gyro {
         z = 0.f;
         this.capturingTimes = new long[capturingTimes.length];
         long maxTime = Long.MIN_VALUE;
-        for(long time : capturingTimes){
+        for(long time : capturingTimes)
             if(time > maxTime) maxTime = time;
-        }
         int requiredSamples = 700;
         delayUs = (int) (maxTime/requiredSamples)/1000;
         //delayUs = 0;
@@ -122,9 +120,8 @@ public class Gyro {
 
     public void CaptureGyroBurst() {
         //Save previous
-        if(gyroburst){
+        if(gyroburst)
             CompleteGyroBurst();
-        }
         counter = 0;
         integrate = true;
         timeCount = capturingTimes[capturingNumber]+System.nanoTime();
@@ -153,16 +150,13 @@ public class Gyro {
     }
 
     public int getShakiness() {
-        if (mAngles == null) {
+        if (mAngles == null)
             return 0;
-        }
         int output = 0;
-        for (float f : mAngles) {
+        for (float f : mAngles)
             output += Math.abs((int) (f * 1000));
-        }
-        if (filter == -1) {
+        if (filter == -1)
             filter = output;
-        }
         output = (int) (output * (1.0f - fk) + filter * (fk));
         filter = output;
         tripodCounter++;
@@ -170,9 +164,8 @@ public class Gyro {
         if(tripodCounter == tripodDetectCount-1){
             tripodShakiness = (int) (temp);
             temp = 0;
-        } else {
+        } else
             temp = Math.max(output,temp);
-        }
         return output;
     }
     public boolean getTripod(){

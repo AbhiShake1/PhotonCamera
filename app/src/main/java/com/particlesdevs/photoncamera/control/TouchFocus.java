@@ -75,10 +75,8 @@ public class TouchFocus {
         if (sizee == null) {
             sizee = new Rect(0, 0, size.x, size.y);
         }
-        if (x < 0)
-            x = 0;
-        if (y < 0)
-            y = 0;
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
         /*if (y > CurUi.y)
             y = CurUi.y;
         if (x > CurUi.x)
